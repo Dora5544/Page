@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>人机五子棋游戏</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./pack/standstone.bootstrap.min.css">
+        <script src="./pack/jquery.min.js"></script>
+        <script src="./pack/bootstrap.min.js"></script>
+        <!--导航栏-->
+        <script type="text/javascript" src="nav.js"></script>
+        <!--更新排行榜所在文件-->
+        <script type="text/javascript" src="play.js"></script>
+    </head>
+    <body>
+        <!--导航栏-->
+        <script>
+            var nav = new Nav(null);
+        </script>
+        <!--主界面-->
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col-md-3">
+                    <!--empty-->
+                </div>
+                <div class="col-md-6">
+                    <!--logo图片-->
+                    <div>
+                        <img class="img-circle img-responsive center-block" src="./drawable/face.png" alt="logo">
+                    </div>
+                    <!--开始游戏按钮-->
+                    <div>
+                        <button type="button" style="display:block;margin: 20px auto" class="btn btn-success" onclick="window.location.href = 'level.html'">开始游戏</button>
+                    </div>
+                    <!--排行榜-->
+                    <div class="panel panel-danger" id="rank-panel">
+                        <!--title-->
+                        <div class="panel-heading">排行榜</div>
+                        <!--list-->
+                        <div class="panel-body">
+                            <table class="table table-hover">
+                                <!--table head-->
+                                <thead> <tr><th>排名</th><th>用户名</th><th>积分</th></tr></thead>
+                                <!--the context below will be come auto-->
+                                <tbody id="user-rank">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <!--empty-->
+                </div>
+            </div>
+            <!--模态对话框-->
+            <div class="modal fade" id="login-panel" tabindex="-1" role="dialog" aria-labelledby="user-input" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">请输入用户名</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="user-input" class="form-control" placeholder="用户名">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="login()">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            //立即执行初始化
+            (function () {
+                //获取用户名
+                var user = window.localStorage.getItem("renju-game-user");
+                //如果用户名存在，如果用户名不存在，则弹出登录
+                if (user === null) {
+                    //jquery
+                    $("#login-panel").modal("show");
+                }
+                //更新排行榜
+                updateRank();
+            })();
+
+            /**
+             * 登录
+             * @returns {undefined}
+             */
+            function login() {
+                //获取用户名
+                var user_input = document.getElementById("user-input");
+                var user = user_input.value;
+                //将用户名显示在导航栏
+                var user_nav = document.getElementById("user-nav");
+                user_nav.innerHTML = user;
+                //保存本地
+                window.localStorage.setItem("renju-game-user", user);
+                //jquery隐藏模态框
+                $("#login-panel").modal("hide")
+            }
+        </script>
+    </body>
+</html>

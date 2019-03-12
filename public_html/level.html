@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>选择关卡</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./pack/standstone.bootstrap.min.css">
+        <script src="./pack/jquery.min.js"></script>
+        <script src="./pack/bootstrap.min.js"></script>
+        <!--导航栏-->
+        <script type="text/javascript" src="nav.js"></script>
+
+        <style>
+            /*鼠标悬停效果*/
+            /*橙色*/
+            .img-hover-orange:hover{
+                cursor: pointer;
+                border: 4px #ff9933 solid;
+            }
+            /*红色*/
+            .img-hover-red:hover{
+                cursor: pointer;
+                border: 4px #d9534f solid;
+            }
+            /*按键*/
+            .button-center{
+                margin:10px auto;
+            }
+        </style>
+    </head>
+    <body>
+        <!--导航栏-->
+        <script>
+            var nav = new Nav();
+        </script>
+        <div class="container-fluid">
+            <!--第一行-->
+            <div class="row" >
+                <div class="col-md-4">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading text-center">
+                            Level 1, 入门
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive center-block img-hover-orange" src="./drawable/level1.jpg" alt="" onclick="play(1)">
+                            <button type="button" class="btn btn-warning center-block button-center"  onclick="play(1)">进入</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading text-center">
+                            Level 2, 简单
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive center-block img-hover-orange" src="./drawable/level2.jpg" alt="" onclick="play(2)">
+                            <button type="button" class="btn btn-warning  center-block button-center" onclick="play(2)">进入</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading text-center">
+                            Level 3, 简单
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive center-block img-hover-orange" src="./drawable/level3.jpg" alt="" onclick="play(3)">
+                            <button type="button" class="btn btn-warning  center-block button-center" onclick="play(3)">进入</button>
+                        </div>
+                    </div>               
+                </div>
+            </div>
+            <!--第二行-->
+            <div class="row" >
+                <div class="col-md-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading text-center">
+                            Level 4, 普通
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive center-block img-hover-red" src="./drawable/level4.jpg" alt="" onclick="play(11)">
+                            <button type="button" class="btn btn-danger  center-block button-center" onclick="play(11)">进入</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading text-center">
+                            Level 5, 困难(开发中)
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive center-block img-hover-red" src="./drawable/level5.jpg" alt="" onclick="play(21)">
+                            <button type="button" class="btn btn-danger  center-block button-center" onclick="play(21)">进入</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading text-center" >
+                            Level 6, 待开发...
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive center-block img-hover-red" src="./drawable/level6.jpg" alt="">
+                            <button type="button" class="btn btn-danger  center-block button-center">暂不开放</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+//定义难度等级
+//难度1-3为最简单难度，带有一定概率出错
+//    final public static int LEVEL_EASY_1=1;
+//    final public static int LEVEL_EASY_2=2;
+//    final public static int LEVEL_EASY_3=3;
+//    /**
+//     * 难度中为普通难度，能防守所有单一连珠，但很难防守多连珠，且很少有主动进攻性，
+//     * 该难度将调用SimpleSearchCore类.
+//     */
+//    final public static int LEVEL_MIDDLE=11;
+//    
+//    /**
+//     * 难度困难,包含从考虑接下来1步道N不的最优情况.
+//     */
+//    //向下搜索两步
+//    final public static int LEVEL_DIFFICULT_1=21;
+//     //向下搜索三步
+//    final public static int LEVEL_DIFFICULT_2=22;
+            /**
+             * 根据难度跳转至游戏页面
+             * @param {type} level
+             * @returns {undefined}
+             */
+            function play(level) {
+                window.location.href = "play.html?level=" + level;
+            }
+        </script>
+    </body>
+
+</html>

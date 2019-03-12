@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>开始游戏</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./pack/standstone.bootstrap.min.css">
+        <script src="./pack/jquery.min.js"></script>
+        <script src="./pack/bootstrap.min.js"></script>
+        <!--棋盘逻辑-->
+        <script type="text/javascript" src="play.js"></script>
+        <!--导航栏-->
+        <script type="text/javascript" src="nav.js"></script>
+        <style>
+            /*棋盘样式*/
+            canvas {
+                display: block;
+                margin: 50px auto;
+                box-shadow: -2px -2px 2px #EFEFEF, 5px 5px 5px #B9B9B9;
+            }
+        </style>
+    </head>
+    <body>
+        <!--导航栏-->
+        <script>
+            var nav = new Nav();
+        </script>
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col-md-3">
+                    <!--empty-->
+                </div>
+                <div class="col-md-6">
+                    <!--信息面板-->
+                    <!--该面板展示玩家执棋和AI执棋-->
+                    <div>
+                        <img id="info-img" class="img-responsive center-block" style="display:block; margin:1px auto" src="./drawable/undefined.png" alt="">
+                    </div>
+                    <!--该面板展示谁先走-->
+                    <div id="info-panel" style="font-family:'楷体'; font-size: 20px; font-weight: bold; text-align: center;">正在加载...</div>
+                    <!--排行榜-->
+                    <div class="panel panel-danger" style="display:none" id="rank-panel">
+                        <!--title-->
+                        <div class="panel-heading">排行榜</div>
+                        <!--list-->
+                        <div class="panel-body">
+                            <table class="table table-hover">
+                                <!--table head-->
+                                <thead> <tr><th>排名</th><th>用户名</th><th>积分</th></tr></thead>
+                                <!--the context below will be come auto-->
+                                <tbody id="user-rank"></tbody>
+                            </table>
+                            <Button class="btn btn-success" onclick="var url=window.location.href;window.location.href=url">再来一局</Button>
+                            <Button class="btn btn-danger" onclick="window.location.href = 'level.html'">返回菜单</Button>
+                        </div>
+                    </div>
+                    <!--棋盘-->
+                    <div>
+                        <canvas id="board"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <!--empty-->
+                </div>
+            </div>
+        </div>
+        <script>
+            //完成渲染立即执行
+            (function () {
+//                //获取用户名
+                //检查用户转移至nav类
+                var user = window.localStorage.getItem("renju-game-user");
+                //获取难度
+                var param = window.location.href.split("?");
+                if (param.length === 2) {
+                    param = param[1].split("=");
+                    if (param.length > 1) {
+                        param = param[1];
+                        //如果用户名存在，则进入游戏，否则返回设置用户名
+                        if (user !== null) {
+                            //创建实例
+                            var game_instance = new Game(user, param);
+                        }
+                    }else{
+                        window.location.href="level.html";
+                    }
+                }else{
+                    window.location.href="level.html";
+                }
+
+
+
+            })();
+        </script>
+    </body>
+</html>
